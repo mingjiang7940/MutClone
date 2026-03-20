@@ -9,7 +9,7 @@ This document describes the directory organization and internal data structures 
 ```bash
 0.MutClone/
 ├── 0.Data/
-│   ├── Results/                                   # Stores model outputs (predictions, evaluation metrics, etc.)
+│   ├── Results/                                   # Stores model outputs (predictions, etc.)
 │   │
 │   └── TCGA_MutClone/                             # TCGA-derived mutation-labeled expression datasets
 │       ├── CRC_TCGA/                              # Colorectal cancer (CRC)
@@ -101,8 +101,7 @@ Each gene contains:
 #### ▪ `background`
 - Type: character vector (~3000 genes)  
 - Description:
-  - Predefined background gene set  
-  - Used for model training and normalization  
+  - Predefined background gene set   
 
 ---
 
@@ -112,7 +111,7 @@ Each gene contains:
 - Each gene defines an **independent supervised learning task**  
 - Supports both:
   - Single-cancer modeling  
-  - Cross-cancer transfer learning (svmTL / dnnTL)  
+  - Multi-cancer transfer learning (svmTL / dnnTL)  
 
 ---
 
@@ -126,10 +125,4 @@ List of 2
   .. ..$ label     : Named int [1:311] ...
   .. ..$ background: chr [1:3000] ...
 ```
-
----
-
-# 🎯 Summary
-
-MutClone organizes gene expression and mutation annotations into a nested R list structure, enabling scalable, gene-specific mutation prediction across cancers using both single-cancer and transfer learning frameworks.
 
