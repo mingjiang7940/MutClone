@@ -50,8 +50,8 @@ MutClone consists of four main steps, corresponding to the project structure:
 ## 🔧 Supporting Modules
 
 - `Function/` — utility functions used across all steps  
-- `0.Data/` — input datasets and processed data  
-- `Results/` — prediction outputs and evaluation results  
+- `0.Data/`   — input datasets and processed data  
+- `Results/`  — prediction outputs  
 
 ---
 

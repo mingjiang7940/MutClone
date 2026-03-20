@@ -214,7 +214,7 @@ seurat.list.filtered <- lapply(names(seurat.list), function(name) {
 							obj$nFeature_RNA >= lim$lower_gene & obj$nFeature_RNA <= lim$upper_gene
 			)
 			obj.filtered <- subset(obj, cells = colnames(obj)[keep.cells])
-			cat("过滤了",ncol(obj)-ncol(obj.filtered),"个细胞\n")
+			cat("Filtered", ncol(obj) - ncol(obj.filtered), "cells\n")
 			return(obj.filtered)
 		})
 names(seurat.list.filtered) = names(seurat.list)
