@@ -1,6 +1,6 @@
 # 📦 MutClone Data Documentation
 
-This document describes the directory organization and internal data structures used in the MutClone project. It is intended for reproducibility and ease of use across both R and Python pipelines.
+This document describes the directory organization and internal data structures used in the MutClone project.
 
 ---
 
@@ -114,15 +114,4 @@ Each gene contains:
   - Multi-cancer transfer learning (svmTL / dnnTL)  
 
 ---
-
-## 📎 Example (R output)
-
-```r
-List of 2
- $ all.data : num [1:15042, 1:311] ...
- $ all.label:List of 355
-  ..$ ABCA13  :List of 2
-  .. ..$ label     : Named int [1:311] ...
-  .. ..$ background: chr [1:3000] ...
-```
 
