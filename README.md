@@ -8,7 +8,7 @@
 
 Understanding how somatic mutations shape cellular phenotypes requires identifying *mutant clones*—cell populations sharing the same mutation. However, most single-cell RNA sequencing (scRNA-seq) datasets lack matched genotype information.
 
-**MutClone** addresses this limitation by inferring mutant clones directly from gene expression profiles using a transfer learning framework that integrates bulk and single-cell data.
+**MutClone** addresses this limitation by inferring mutant clones directly from gene expression profiles using a multi-cancer transfer learning framework.
 
 ---
 
@@ -20,7 +20,7 @@ MutClone consists of four main steps, corresponding to the project structure:
 
 ### **Step 1. Model Training (`Step1_ModelTraining`)**
 
-- Train mutation prediction models using **multi-cancer bulk transcriptomic datasets**  
+- Train mutation prediction models via **multi-cancer transfer learning on bulk transcriptomic datasets**
 - Learn **mutation-associated transcriptional signals**  
 
 ---
