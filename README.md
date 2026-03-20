@@ -42,7 +42,7 @@ MutClone consists of four main steps, corresponding to the project structure:
 ### **Step 4. MutClone Inference (`Step4_MutCloneInference`)**
 
 - Apply selected bulk-trained models to scRNA-seq data  
-- Predict **mutation probabilities for each cell**  
+- Predict **mutation probability for each cell**  
 - Infer mutation status using **confidence-based decision boundaries**  
 
 ---
