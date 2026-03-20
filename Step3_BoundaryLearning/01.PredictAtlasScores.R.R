@@ -11,7 +11,7 @@ Device.path = "D:/Project/0.MutClone/Function"
 out.dir = "/WorkSpace/chengmingjiang/1.Project_sc2mutTL/3.Section/00.完成故事梳理后_整理版/S3_模型偶联Atlas/0.Data/新版本/01.能直接用样本标签代替细胞标签吗"
 if (!dir.exists(out.dir))	dir.create(out.dir, recursive = TRUE)
 cancer = "CRC"
-mut.ls = c("APC","KRAS","TP53","BRAF","PIK3CA","SMAD4","FBXW7") #输入要使用的突变模型
+mut.ls = c("APC","KRAS","TP53","BRAF","PIK3CA","SMAD4","FBXW7")
 
 
 
@@ -38,7 +38,7 @@ for(i in 1:length(mut.ls) ){
 	mod.typs = c("svm", "svmTL", "dnnTL")
 	for(mod.typ in mod.typs){
 		
-		#导入bulk模型
+		#load models
 		if(mod.typ=="svmTL"){
 			t.file = file.path("/IData/DataCenter/TCGA",paste0(cancer,"_TCGA"),"Results/BioGenomics/01.突变/93.预测突变/11.基于表达预测突变/120.基因突变谱与表达谱[带分类标签]/2.SVMTL/svmTL.rds")
 			svmTL.list <- tryCatch({ readRDS(t.file) }, error = function(e){NULL} )
@@ -89,7 +89,7 @@ for m_file in pkl_files:
 		model_key = cancer+'_' + os.path.splitext(os.path.basename(m_file))[0]
 		models[model_key] = model
 
-print(f'总共加载了 {len(models)} 个模型')
+print(f'Loaded {len(models)} models in total')
 " )
 			# Aggregate models
 			dnnTL.list = py$models
@@ -103,7 +103,7 @@ print(f'总共加载了 {len(models)} 个模型')
 
 
 #'-Part [1]-
-#' 内容：预测初始Atlas
+#' Content: Predict the initial Atlas
 #'#######
 dat.matrix.knn = seurat.object_pseudo_bulk
 pred.res.list = list()

@@ -4,7 +4,7 @@
 #'                (no difference by rank-sum test or JS similarity > 0.75),
 #'                retaining samples potentially enriched with mutant cells so that WES sample labels better approximate cell-level labels.
 #' 
-#' Paragraph <1>  filter mutant samples whose score density is similar to wild-type samples
+#' Paragraph <1>  filter mutant samples whose score density is similar to wild-type cells
 #' 
 #' Paragraph <2>  visualization: plot density distributions after sample filtering
 #'############ [25-11-11] ############

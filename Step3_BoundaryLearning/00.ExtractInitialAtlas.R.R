@@ -21,8 +21,8 @@ if (!dir.exists(out.dir))	dir.create(out.dir, recursive = TRUE)
 #'#######
 #' (1) load integrated data
 library(Seurat)
-sc.dat = readRDS("/IData3/DataCenter/整合数据/PreMut_CRC_2024/OMICSData/scRNAseq.rds") 		 #/WorkSpace/chengmingjiang/TmpData/integrateData/1.整合数据构建Atlas/seurat_obj_cell_int.RDS
-meta.data = readRDS("/IData3/DataCenter/整合数据/PreMut_CRC_2024/OMICSData/meta.data.rds")   #/WorkSpace/chengmingjiang/TmpData/integrateData/0.数据预处理/seurat.all.cell_meta.data_wes.RDS
+sc.dat = readRDS("/IData3/DataCenter/整合数据/PreMut_CRC_2024/OMICSData/scRNAseq.rds") 
+meta.data = readRDS("/IData3/DataCenter/整合数据/PreMut_CRC_2024/OMICSData/meta.data.rds") 
 pct = readRDS("/IData3/DataCenter/整合数据/PreMut_CRC_2024/PatientCenter/PatientCenter.rds")
 
 

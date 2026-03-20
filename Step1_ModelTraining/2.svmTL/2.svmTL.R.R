@@ -1,13 +1,6 @@
-# TODO: Add comment
+# TODO: Train svmTL
 # Author: Administrator
 #
-# ##Original version without considering clonality
-# Preprocessing 3.0_predict mutation genes based on expression
-#
-# ##All versions considering clonality
-# Point Standard log2(tpm+1): Preprocessing 3.1_predict clonal mutation genes based on expression
-# Point TCGA pan-cancer data are already batch-corrected: Preprocessing 3.1.2_predict clonal mutation genes based on expression
-# Point Our own quantile normalization for pan-cancer data: Preprocessing 3.2_predict clonal mutation genes based on expression_quantile normalization version
 ###############################################################################
 rm(list = ls() )
 Device.path = "D:/Project/0.MutClone/Function"
@@ -51,15 +44,15 @@ if(length(mutgenes) == 0){
 					"OV_TCGA", "PAAD_TCGA", "PCPG_TCGA", "PRAD_TCGA", "SARC_TCGA", "SKCM_TCGA",
 					"STAD_TCGA", "TGCT_TCGA", "THCA_TCGA", "THYM_TCGA", "UCEC_TCGA", "UCS_TCGA",
 					"UVM_TCGA")
-		ID.xteams = setdiff(ID.xteams, ID.xteam)#将自己去除
+		ID.xteams = setdiff(ID.xteams, ID.xteam)
 		
 
 		library(parallel)
 		result.cm = lapply(mutgenes, function(t.name){
 					
 			
-					#(0) 识别可用的源
-					valid_ID_xteams = c()  # 保留包含 'mutgene' 的 ID_xteams
+					#(0) Identify transferable source domains
+					valid_ID_xteams = c()  # Retain ID_xteams containing 'mutgene'
 					for(tmp.id in ID.xteams){
 						s.file.mut.exprs.data = file.path(dirname(Device.path),"0.Data",'TCGA_MutClone', tmp.id, "mut.pancancer.exprs.data.indel.RDS")
 						s.mut.exprs.data = readRDS(s.file.mut.exprs.data)
@@ -70,8 +63,8 @@ if(length(mutgenes) == 0){
 					
 					if( length(valid_ID_xteams)==0 ) return(NULL)
 					
-					#(1.1) 建立源模型
-					cat("源模型建立中...\n")
+					# (1.1) Build source models
+					cat("Training source models...\n")
 					s.model.list = list()
 					for(tmp.id in valid_ID_xteams){
 
@@ -96,7 +89,7 @@ if(length(mutgenes) == 0){
 						
 					
 			
-					cat("迁移模型建立中...\n")
+					cat("Training transfer learning model...\n")
 					#(2) Assemble into a "standard transfer learning model"
 					#Point Assemble the complete transfer learning data object
 					tl.cm = CreateTLClassifyModel(
@@ -109,7 +102,7 @@ if(length(mutgenes) == 0){
 							method.select.source="DTE")
 					
 					
-					cat("超参数选择...\n")
+					cat("hyperparameter selection...\n")
 					#'##########  ---- Paragraph <1> ----  ###########  
 					#' Core objective: hyperparameter selection based on cross-validation
 					#' 

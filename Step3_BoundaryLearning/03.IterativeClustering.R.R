@@ -1,8 +1,8 @@
 #'##########  ---- Paragraph <1> ----  ###########  
 #' Core objective: identify high-confidence cells via iterative clustering:
-#' 					we assume that mutant or wild-type cell populations that form clusters in expression space
-#' 					have neighboring cells with consistent phenotypes,
-#' 					and are more likely to represent true mutant or wild-type cells (high-confidence cells).
+#' 					we assume that mutant or wild-type cell populations that form clusters in expression space 
+#					have neighboring cells with consistent phenotypes,and are more likely to represent 
+#					true mutant or wild-type cells (high-confidence cells).
 #' 
 #' Point Input：
 #' 				initAtlas				initial Atlas

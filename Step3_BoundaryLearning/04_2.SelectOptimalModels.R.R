@@ -171,7 +171,7 @@ for(mod.id in unique(rank.df2$Prediction)) {
 
 
 library(patchwork)
-pdf(file.path(out.dir, "Results", "1.总体效能_模型选择", "综合排秩_及模型选择情况.pdf"), width = 8 * 7, height = 6)
+pdf(file.path(out.dir, "Results", "1.Overall_Performance_Model_Selection", "Integrated_Ranking_and_Model_Selection.pdf"),  width = 8 * 7, height = 6)
 wrap_plots(p.list, nrow = 1)
 dev.off()
 

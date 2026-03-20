@@ -225,7 +225,7 @@ seurat.list.filtered = lapply(seurat.list.filtered,function(SeuratObject){
 			min.cells = 10
 			t.index = (Matrix::rowSums(SeuratObject@assays$RNA@counts > 0) >= min.cells)
 			keepGenes = rownames(SeuratObject)[t.index];
-			cat("过滤了",nrow(SeuratObject)-length(keepGenes),"个基因\n")
+			cat("Filtered", nrow(SeuratObject) - length(keepGenes), "genes\n")
 			SeuratObject = subset(SeuratObject, features = keepGenes)
 		})
 
@@ -251,8 +251,8 @@ for(datset in names(seurat.list.filtered)){
 	#3) filter cells
 	keep.cell.idx = !(sc.dat@meta.data$SampleID %in% rm.sample)
 	
-	cat("过滤",length(rm.sample),"个样本\n")
-	cat("涉及",ncol(sc.dat)-sum(keep.cell.idx),"个细胞\n")
+	cat("Filtered", length(rm.sample), "samples\n")
+	cat("Involving", ncol(sc.dat) - sum(keep.cell.idx), "cells\n")
 	
 	if(sum(keep.cell.idx)!=0){
 		sc.dat = subset(sc.dat, cells=rownames(sc.dat@meta.data)[keep.cell.idx] )

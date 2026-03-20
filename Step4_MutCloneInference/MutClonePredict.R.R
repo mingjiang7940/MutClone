@@ -43,7 +43,7 @@ for(dataset in names(seurat.object.list) ){
 	if(dataset %in% c("Li_Gut_2020") ) seurat.object[["PatientID"]] = seurat.object[["SampleID"]]
 	
 	source( file.path(Device.path, "3.BLADE/0.Code/ConstructPseudoBulk_IntraPatient.R") )
-	seurat.object_pseudo_bulk.list[[dataset]] = psudoBulkInPat(seurat.object, k=50, mc.cores=1)   #Point 输入输出数据的单位均为log2(cpm+1)或者log2(tpm+1)
+	seurat.object_pseudo_bulk.list[[dataset]] = psudoBulkInPat(seurat.object, k=50, mc.cores=1) 
 	cat(dataset,"\n")
 }
 #saveRDS(seurat.object_pseudo_bulk.list, file.path(t.dir,"seurat.object_pseudo_bulk.list.RDS") )
@@ -55,7 +55,7 @@ for(dataset in names(seurat.object.list) ){
 #' Content: perform score prediction
 #'#######
 #(1) load corresponding models
-mut.ls = c("APC","KRAS","TP53","BRAF","PIK3CA","SMAD4","FBXW7") #输入要使用的突变模型
+mut.ls = c("APC","KRAS","TP53","BRAF","PIK3CA","SMAD4","FBXW7")
 model.list = list()
 for(i in 1:length(mut.ls) ){ 
 	
@@ -75,9 +75,9 @@ for(i in 1:length(mut.ls) ){
 			cm.bulk = cm.bulk.list[[mutation]]
 		}else if(mod.typ=="dnnTL"){
 			library(reticulate)
-			use_condaenv("/Software/PythonENV/DeepLearning.py3.9", required = TRUE)  # 指定 conda 环境
+			use_condaenv("/Software/PythonENV/DeepLearning.py3.9", required = TRUE)
 			py_config()
-			DevicePath = '/WorkSpace/chengmingjiang/1.Project_sc2mutTL/BladePipline/0.Code'# 检查 Python 是否已经正确设置
+			DevicePath = '/WorkSpace/chengmingjiang/1.Project_sc2mutTL/BladePipline/0.Code'
 			source_python( file.path(DevicePath,"2.TransferLearning/dnnTL/0.Code/main", "ClassifyModel.py") ) #	
 			#py$directory = file.path("/WorkSpace/chengmingjiang/TmpData/TL_model",paste0(cancer,"_TCGA"),"2.迁移学习dnnTL/单个基因3/")
 			py$directory = file.path("/IData/DataCenter/TCGA",paste0(cancer,"_TCGA"),"Results/BioGenomics/01.突变/93.预测突变/11.基于表达预测突变/120.基因突变谱与表达谱[带分类标签]/3.dnnTL/单个基因/")
@@ -112,9 +112,8 @@ for m_file in pkl_files:
 		model_key = cancer+'_' + os.path.splitext(os.path.basename(m_file))[0]
 		models[model_key] = model
 
-print(f'总共加载了 {len(models)} 个模型')
+print(f'Loaded {len(models)} models in total')
 " )
-			#汇总模型
 			dnnTL.list = py$models
 			cm.bulk = dnnTL.list[[mod.id]]
 		}	

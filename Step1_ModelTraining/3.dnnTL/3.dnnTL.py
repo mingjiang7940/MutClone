@@ -9,7 +9,7 @@ from ClassifyModel import *
 
 
 '''
-@构建dnnTL突变预测模型
+@ Build dnnTL mutation prediction model
 '''
 ID_xteam = "CRC_TCGA"
 out_dir = os.path.join(os.path.dirname(DevicePath), "0.Data/Results", ID_xteam, "3.dnnTL")
@@ -50,14 +50,14 @@ aim_path = 'mut.pancancer.exprs.data.indel.pkl'
 all_model = {}
 
 if len(mutgenes) == 0:
-    print('没有突变基因满足要求\n')
+    print("No mutation genes meet the criteria\n")
 else:
     start_time = time.time()
     for mutgene in mutgenes:
 
         gene_file_path = os.path.join(gene_dir, f"{mutgene}.pkl")
         if os.path.exists(gene_file_path):
-            print(f"跳过已存在的基因: {mutgene}")
+            print(f"Skipping existing gene: {mutgene}")
             continue
 
         # (0) identify transferable source domains
@@ -121,12 +121,12 @@ else:
         # (4) Train_best_model
         t_model.Train_best_model(model=s_models, GPU_id=GPU_id)
 
-        # 保存模型
+        # save models
         t_model.data = None
         t_model.sample_label = None
         t_model.final_model.GPU_id = None
         base_dir2 = os.path.join(out_dir, "单个基因")
         t_model.export(export_dir=os.path.join(base_dir2, f"{gene}"))
-        print(f"✅ 完成基因: {mutgene}\n")
+        print(f"✅ finished: {mutgene}\n")
 
-print("🎉 所有基因建模完成！")
+print("🎉 finished！")
