@@ -8,19 +8,53 @@
 
 Understanding how somatic mutations shape cellular phenotypes requires identifying *mutant clones*—cell populations sharing the same mutation. However, most single-cell RNA sequencing (scRNA-seq) datasets lack matched genotype information.
 
-**MutClone** addresses this limitation by inferring mutant clones directly from gene expression profiles using a transfer learning framework.
+**MutClone** addresses this limitation by inferring mutant clones directly from gene expression profiles using a transfer learning framework that integrates bulk and single-cell data.
 
 ---
 
-## 🚀 Method Summary
+## 🚀 Workflow Overview
 
-MutClone trained in two stages:
-
-1. **Multi-cancer transfer learning (bulk data)**  
-   - Learns mutation-associated transcriptional signals from multi-cancer bulk tumor datasets  
-
-2. **Single-cell inference (scRNA-seq)**  
-   - Projects learned signals into a large-scale single-cell mutation atlas  
-   - Defines stable decision boundaries for robust mutant clone identification  
+MutClone consists of four main steps, corresponding to the project structure:
 
 ---
+
+### **Step 1. Model Training (`Step1_ModelTraining`)**
+
+- Train mutation prediction models using **multi-cancer bulk transcriptomic datasets**  
+- Learn **mutation-associated transcriptional signals**  
+
+---
+
+### **Step 2. Atlas Construction (`Step2_AtlasConstruction`)**
+
+- Construct a **large-scale single-cell atlas**  
+
+---
+
+### **Step 3. Boundary Learning (`Step3_BoundaryLearning`)**
+
+- Project bulk-derived signals into the single-cell expression space 
+- Learn **decision boundaries** in the single-cell atlas  
+- Identify stable regions corresponding to mutant and wild-type states  
+
+---
+
+### **Step 4. MutClone Inference (`Step4_MutCloneInference`)**
+
+- Apply selected bulk-trained models to scRNA-seq data  
+- Predict **mutation probabilities for each cell**  
+- Infer mutation status using **confidence-based decision boundaries**  
+
+---
+
+## 🔧 Supporting Modules
+
+- `Function/` — utility functions used across all steps  
+- `0.Data/` — input datasets and processed data  
+- `Results/` — prediction outputs and evaluation results  
+
+---
+
+## 🎯 Summary
+
+**MutClone integrates Multi-cancer transfer learning with atlas-based boundary optimization to enable accurate and scalable inference of mutant clones directly from scRNA-seq data.**
